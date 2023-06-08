@@ -1,0 +1,112 @@
+include includes/mixins
+
+doctype html
+html(lang="en")
+	head
+		title Working with Pug
+		meta(charset="UTF-8")
+		meta(http-equiv="X-UA-Compatible", content="IE=edge")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		title OpenHeart List
+		link(rel="stylesheet", href="/styles/main.css")
+		style.
+			.comment {
+				font-family: sans-serif;
+				line-height: 1.5;
+				padding: 10px;
+				border: 1px solid #555;
+				width: 250px;
+			}
+			.date{
+				font-size:85%;
+				text-align: right;
+			}
+			.author{
+				font-size: 110%;
+				font-weight: bold;
+			}
+			.text{
+				font-size: 100%;
+			}
+	header
+		include includes/main-nav
+	body
+		h1#page-title Welcome to dcode
+		p.big-para.
+			 This is a paragraph tag 
+			 and this is a multiline tag
+		.display-box
+			ul
+				li This is item #1
+				li This is item #2
+				li This is item #3
+		form#submit-data
+			input(type="password" name="password" minLength=5)
+			input(data-js=`${5 > 7 ? 'OK': 'NOT OK'}`)
+			input(type="text" disabled)
+		- const myClasses = ["class 1", "class 2", "class 3"]
+		div.startClass(class=myClasses)
+		- const myStyles = {"color":"red", "background-color":"blue"}
+		div(style=myStyles)
+		- const myAttributes = {"src":"myPhoto.png", "alt":"My Photo"}
+		img&attributes(myAttributes)
+		h1  For/Each Loops 
+			each n, i in [1, 2, 3, 4, 5]
+				p= n + " at index " + i
+		h1 Loop Objects 
+			- const grades = {"Web Dev":100, "Software Design":76};
+			for n, i in grades
+				p= "Your Grade for " + i + " is " + n
+			else
+				strong "No Values Are Here"
+		h1 Conditionals in Pug 
+			- let user = {name:"Domenic", loggedIn:false, lastLogin:6};
+			if user.loggedIn 
+				p  
+					| Welcome Back
+					strong #{user.name}
+			else if user.lastLogin < 10
+				p Your last login was #{user.lastLogin} minutes ago
+				p
+					a(href="/login")  Please Login Again.
+			else
+				a(href="/login") Please Log In
+		h1 Case Statements in Pug
+			- let orderStatus = "In_Transit"
+			case orderStatus
+				when "Pending"
+					p Your Order is Pending
+				when "In_Transit"
+					p Your Order has Shipped
+				when "Completed"
+					p Your Order is Complete
+				default
+					p Your Order is not found
+		h1 Mixins in Pug
+			h2 Behave like Functions
+			h3 Lets use a Comment Mixin
+			- const data = {date:'04-02-2018', author:'decode', text:'Hey Mate', isAdmin:true}
+			+ comment (data)
+			- const data2 = {date:'04-02-2018', author:'mark', text:'This is fun'}
+			+ comment (data2)
+		h1 Tag Interpolation
+			p.
+				You can insert #[em any html tag] within a text block by enclosing inside 
+				hash[] construct. Otherwise Pug removes all whitespace and indentation between 
+				elements.
+		h1 Nested Syntax using a colon
+			h3 a:colon form example
+			a: img(src="/", alt="some image", srcset="")
+		h1 Non-escaped strings by using !=
+			div(escaped="<code>") Equals sign for attribute yields escaped text 
+			div(unescaped!="<code>")  != sign yields unescaped special chars
+		h1 Conditional attributes
+			p. 
+				Can test for a condition inside {} before applying a class attribute 
+				In this example, the active class is conditional to the statement following
+				-var currentUrl = 'about'
+				a(class={active: currentUrl === '/'} href="/") Home 
+				a(class={active: currentUrl === '/about' href="/about"}) About gets the 'active class'
+
+
+		

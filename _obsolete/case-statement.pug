@@ -1,0 +1,16 @@
+extends ../templates/layout.pug
+
+
+
+block main-content
+	h1 Case Statements in Pug
+	- let orderStatus = "In_Transit"
+	case orderStatus
+		when "Pending"
+			p Your Order is Pending
+		when "In_Transit"
+			p Your Order has Shipped
+		when "Completed"
+			p Your Order is Complete
+		default
+			p Your Order is not found

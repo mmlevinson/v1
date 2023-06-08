@@ -1,0 +1,64 @@
+sudo npm install -g pug pug-loader
+sudo npm install -g stylus stylus-plain-loader
+sudo npm install -g rupture
+sudo npm install -g typographic
+sudo npm install -g nib
+npm install gulp-cli
+npm install gulp
+npm install gulp-stylus
+npm install gulp-pug
+npm install typographic nib rupture    //into package.json
+npm install gulp-contact   //to join multiple JS files
+stylus -u nib -u rupture -u typogr aphic -w myStyles.styl    //uses nib, rupture and watches myStyle.styl css file
+    see https://github.com/jescalan/rupture,  https://stylus-lang.com/
+    rupture.scale-name = 'xs' 's' 'm' 'l' 'xl' 'hd'
+    rupture.scale-name = 'phone-small' 'phone-plus' 'tablet' 'desktop' 'desktop-large' 'desktop-super'
+    rupture.scale-names = '0' '400' '600' '800' '1050' '1800'     //in pixels
+    You can drop these queries into any element definition 
+     stylus -w ./src/styles/main.styl -o ./public/styles
+typographic   for setting font sizes in horizontally consistent ratios
+  https://github.com/2metres/typographic
+  @import 'typographic'   //in your main .styl file
+  presets font stacks
+  t-headers(futura)
+  t-presets(perfect-fourth)   adds favorable font-sizes and line-heights for each size
+  the presets is a ratio nicknamed off the muscial intervals  
+  You can ovverride the font stacks with custom fonts
+  By changing the base font-size changes all the outputs which are rem
+nib CSS 3 browser prefixes utility variables fixed, absolute, relative mixins etc
+  including standard resets   
+  https://stylus.github.io/nib/
+Gulp is a task manager, build processor
+sudo npm install --global gulp
+install into package.json for use in your project
+npm install --save-dev gulp
+new file gulpfile.js
+LevelUp tutorials has a full Gulp course
+Now install gulp-stylus package
+npm install --save-dev gulp-stylus
+
+pug tutorial https://www.google.com/search?client=firefox-b-1-d&q=pug+tutorials#fpstate=ive&vld=cid:df18e24f,vid:kt3cEjjkCZA
+
+pug -w ./src/index.pug -o ./public/ -P   watches/outputs file
+pug -w . -o ./ -P      //watch all files in current directory, output to same
+Unbufferd = code not yet evaluated
+Buffered = code evaluated and sent to output
+Pug is whitespace sensitive to array elements cannot be placed on multiple lines
+   unless you indent the defiction under a dash symbol
+-
+ const friends = [
+   "Frodo Baggins",
+   "Gandalf",
+   "Aragorn"
+ ]
+
+Now here are ways to get the buffered code from the variables, and works
+also with the keys of JS Objects
+
+.friends
+  each friend in friends    //all equivalent outputs
+    .friend= friend
+    .friend #{friend}
+    .friend `Your friends name is ${friend}`
+  else
+    .oh-no You have no friends!       //output for empty array

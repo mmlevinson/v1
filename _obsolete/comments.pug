@@ -1,0 +1,16 @@
+extends ../templates/layout.pug
+include ../includes/mixins.pug
+
+- const pageTitle = 'Comments'
+
+block more-styles
+	link(rel="stylesheet", href="styles/comment.css")
+
+block main-content
+	h1 Mixins in Pug
+	h2 Behave like Functions
+	h3 Lets use a Comment Mixin
+	- const data = {date:'04-02-2018', author:'decode', text:'Hey Mate', isAdmin:true}
+	+ comment (data)
+	- const data2 = {date:'04-02-2018', author:'mark', text:'This is fun'}
+	+ comment (data2)

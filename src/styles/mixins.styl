@@ -1,0 +1,42 @@
+//mixins are reusable code, declared like function calls, including comma
+//  separated argument list and default values
+
+//Interpolation
+vendor(property, args)
+  {property} args
+  -webkit-{property}  args 
+  -moz-{property} args   
+
+// border-radius(radius = 5px)      //comma delimited argument list
+//    -webkit-border-radius radius
+//    border-radius radius
+
+//Same, using interpolation
+border-radius(radius = 5px)      //comma delimited argument list
+   vendor('border-radius', radius)
+
+transition(args)
+  vendor('transition', args)   //no need to add vendor prefixes
+
+overflow(arg)
+   white-space no-wrap
+   overflow hidden
+   vendor('text-overflow', arg)
+
+border(someColor, width = 1px)   //quick oneline border
+  border width solid someColor
+
+fixed(x, y)
+  position fixed
+  top x
+  left y
+
+relative(x, y)
+  position relative
+  top x
+  left y
+
+absolute(x, y)
+  position absolute
+  top x
+  left y

@@ -1,0 +1,21 @@
+//You can import both CSS and styl files
+// @import 'nib'
+@import './theme.styl'   
+@import './mixins.styl'
+@import './functions.styl'
+//@import './*'      globing import with a wildcard
+
+
+
+//@property goes up the chain and uses the last definition, keeping values in sync
+body
+	background-color color-primary-background-300
+	color color-secondary-400
+	main
+		main-nav
+			fixed 0 20
+
+.nav-list
+		list-style-type none
+		.li
+			text-decoration none

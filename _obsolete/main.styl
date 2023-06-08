@@ -1,0 +1,28 @@
+//You can import both CSS and styl files
+// @import 'nib'
+@import './theme.styl'   
+@import './mixins.styl'
+@import './functions.styl'
+//@import './*'      globing import with a wildcard
+
+//@property goes up the chain and uses the last definition, keeping values in sync
+body
+	background-color blue
+	color darkRed
+	border @color 
+	main
+		margin-left add(1px, 2, 4)
+		transition(all 0.2s ease)
+		background-color hsla(blue, 0.5)  //function, passes an entire variable
+		border 1px solid  @color     //looks up the chain for the last color definition
+		border-radius(15px)         //this is a mixin
+		//border-radius 20px         //transparent mixin, used instead of the standard CSS property
+		p
+			overflow ellipsis   //transparent mixin (of native CSS property)
+		nav
+			fixed 0 20
+
+.nav-list
+		list-style-type none
+		.li
+			text-decoration none
